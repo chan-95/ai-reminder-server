@@ -1,20 +1,18 @@
-import os
 from twilio.rest import Client
+import os
 
-def call_with_twilio(to_phone, text):
-    from twilio.rest import Client
-    import os
-
+def call_with_twilio(to_phone, reminder_text):
     client = Client(os.environ["TWILIO_SID"], os.environ["TWILIO_TOKEN"])
+    from_phone = os.environ["TWILIO_PHONE"]
 
     call = client.calls.create(
         to=to_phone,
-        from_=os.environ["TWILIO_PHONE"],
+        from_=from_phone,
         twiml=f"""
         <Response>
-            <Say>{text}</Say>
+            <Say>{reminder_text}</Say>
         </Response>
         """
     )
 
-    print("📞 呼叫已发出！Call SID:", call.sid)
+    print("✅ 呼叫已发出！Call SID:", call.sid)

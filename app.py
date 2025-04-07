@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
-from generate_voice import generate_voice
-from make_call import call_with_twilio
+from make_call import call_with_twilio  # 直接用这个
 
 app = Flask(__name__)
 
@@ -13,8 +12,6 @@ def remind():
     if not text or not phone:
         return jsonify({"error": "Missing text or phone"}), 400
 
-    # generate_voice(text, "public/output.mp3")  ← 注释掉
-    call_with_twilio(phone, text)  # 改成直接播报文字
+    call_with_twilio(phone, text)  # ✅ 直接用 <Say> 播语音
 
     return jsonify({"status": "Reminder sent!"})
-
