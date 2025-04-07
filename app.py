@@ -17,6 +17,6 @@ def remind():
     generate_voice(text, "public/output.mp3")
 
     # 拨打电话并播放语音
-    call_with_twilio(phone, "https://ai-reminder-project-ncyubvvpx-chans-projects-1c23ad6d.vercel.app/output.mp3")
+    call_with_twilio(phone, text)
 
     return jsonify({"status": "Reminder sent!"})
