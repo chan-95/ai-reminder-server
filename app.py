@@ -13,10 +13,8 @@ def remind():
     if not text or not phone:
         return jsonify({"error": "Missing text or phone"}), 400
 
-    # 生成语音文件
-    generate_voice(text, "public/output.mp3")
-
-    # 拨打电话并播放语音
-    call_with_twilio(phone, text)
+    # generate_voice(text, "public/output.mp3")  ← 注释掉
+    call_with_twilio(phone, text)  # 改成直接播报文字
 
     return jsonify({"status": "Reminder sent!"})
+
