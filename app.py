@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/remind", methods=["POST"])
 def remind():
-    data = request.json
+    data = request.get_json()
     text = data.get("text")
     phone = data.get("phone")
 
@@ -17,6 +17,6 @@ def remind():
     generate_voice(text, "public/output.mp3")
 
     # 拨打电话并播放语音
-    call_with_twilio(phone, "https://your-vercel-url/output.mp3")
+    call_with_twilio(phone, "https://ai-reminder-project-ncyubvvpx-chans-projects-1c23ad6d.vercel.app/output.mp3")
 
     return jsonify({"status": "Reminder sent!"})
